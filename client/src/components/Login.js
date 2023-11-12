@@ -5,24 +5,22 @@ import { TextField, Button, Container, Typography } from '@mui/material';
 function Login() {
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setLoginData(prevLoginData => ({
-      ...prevLoginData,
+    setLoginData({
+      ...loginData,
       [name]: value,
-    }));
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Mock authentication by setting isLoggedIn flag
-    localStorage.setItem('isLoggedIn', 'true');
-    // Navigate to the dashboard or home page
-    navigate('/');
+    // This bypasses any real authentication check
+    navigate('/dashboard'); // Redirect to the dashboard
   };
 
   return (
@@ -33,10 +31,10 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <TextField
           fullWidth
-          id="email"
-          name="email"
-          label="Email Address"
-          value={loginData.email}
+          id="username"
+          name="username"
+          label="Username"
+          value={loginData.username}
           onChange={handleChange}
           required
           margin="normal"
